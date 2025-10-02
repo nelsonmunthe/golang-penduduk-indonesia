@@ -58,51 +58,91 @@ func (dataPenduduk *DataPendudukRepository) GetDataPenduduk(paginate entity.Pagi
 	return len(data), data[start:end]
 }
 
-func (datapenduduk *DataPendudukRepository) GetChartByReligion() interface{} {
+func (datapenduduk *DataPendudukRepository) GetChartByReligion() []entity.Chart {
 	data := datapenduduk.data
 
-	grouped := make(map[string]int)
+	grouped := make(map[string]entity.Chart)
 
 	for _, d := range data {
-		grouped[d.Agama] += 1
+		grouped[d.Agama] = entity.Chart{
+			Name:       d.Agama,
+			Count:      (grouped[d.Agama].Count) + 1,
+			Percentage: (grouped[d.Agama].Count + 1) / float32(len(data)),
+		}
 	}
 
-	return grouped
+	charts := []entity.Chart{}
+
+	for _, v := range grouped {
+		charts = append(charts, v)
+	}
+
+	return charts
 
 }
 
-func (datapenduduk *DataPendudukRepository) GetChartByPekerjaan() interface{} {
+func (datapenduduk *DataPendudukRepository) GetChartByPekerjaan() []entity.Chart {
 	data := datapenduduk.data
 
-	grouped := make(map[string]int)
+	grouped := make(map[string]entity.Chart)
 
 	for _, d := range data {
-		grouped[d.Pekerjaan] += 1
+		grouped[d.Pekerjaan] = entity.Chart{
+			Name:       d.Pekerjaan,
+			Count:      (grouped[d.Pekerjaan].Count) + 1,
+			Percentage: (grouped[d.Pekerjaan].Count + 1) / float32(len(data)),
+		}
 	}
 
-	return grouped
+	charts := []entity.Chart{}
+
+	for _, v := range grouped {
+		charts = append(charts, v)
+	}
+
+	return charts
 }
 
-func (datapenduduk *DataPendudukRepository) GetChartByPendidikan() interface{} {
+func (datapenduduk *DataPendudukRepository) GetChartByPendidikan() []entity.Chart {
 	data := datapenduduk.data
 
-	grouped := make(map[string]int)
+	grouped := make(map[string]entity.Chart)
 
 	for _, d := range data {
-		grouped[d.Pendidikan] += 1
+		grouped[d.Pendidikan] = entity.Chart{
+			Name:       d.Pendidikan,
+			Count:      (grouped[d.Pendidikan].Count) + 1,
+			Percentage: (grouped[d.Pendidikan].Count + 1) / float32(len(data)),
+		}
 	}
 
-	return grouped
+	charts := []entity.Chart{}
+
+	for _, v := range grouped {
+		charts = append(charts, v)
+	}
+
+	return charts
 }
 
-func (datapenduduk *DataPendudukRepository) GetChartByPernikahan() interface{} {
+func (datapenduduk *DataPendudukRepository) GetChartByPernikahan() []entity.Chart {
 	data := datapenduduk.data
 
-	grouped := make(map[string]int)
+	grouped := make(map[string]entity.Chart)
 
 	for _, d := range data {
-		grouped[d.StatusPernikahan] += 1
+		grouped[d.StatusPernikahan] = entity.Chart{
+			Name:       d.StatusPernikahan,
+			Count:      (grouped[d.StatusPernikahan].Count) + 1,
+			Percentage: (grouped[d.StatusPernikahan].Count + 1) / float32(len(data)),
+		}
 	}
 
-	return grouped
+	charts := []entity.Chart{}
+
+	for _, v := range grouped {
+		charts = append(charts, v)
+	}
+
+	return charts
 }

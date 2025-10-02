@@ -2,6 +2,7 @@ package main
 
 import (
 	"example/data-penduduk-indonesia/entity"
+	"example/data-penduduk-indonesia/middleware"
 	datapenduduk "example/data-penduduk-indonesia/modules/dataPenduduk"
 	"log"
 	"os"
@@ -13,6 +14,10 @@ import (
 func main() {
 	router := gin.Default()
 	var err error
+
+	router.Use(
+		middleware.AllowCORS(),
+	)
 
 	data := []entity.DataPenduduk{
 		{

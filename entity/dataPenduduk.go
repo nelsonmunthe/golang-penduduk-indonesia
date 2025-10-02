@@ -12,3 +12,9 @@ type DataPenduduk struct {
 	Pendidikan       string `json:"pendidikan"`
 	Pekerjaan        string `json:"pekerjaan"`
 }
+
+type Chart struct {
+	Name       string  `json:"name"`
+	Count      float32 `json:"count"`
+	Percentage float32 `json:"percentage"`
+}
